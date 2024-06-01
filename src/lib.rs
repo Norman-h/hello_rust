@@ -7,6 +7,8 @@ pub mod test_struct;
 pub mod test_vec_and_hash;
 pub mod test_iter;
 pub mod test_time;
+pub mod test_tuple;
+pub mod test_array;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right
