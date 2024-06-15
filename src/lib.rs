@@ -9,6 +9,7 @@ pub mod test_iter;
 pub mod test_time;
 pub mod test_tuple;
 pub mod test_array;
+pub mod test_trait;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right

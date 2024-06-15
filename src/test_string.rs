@@ -1,5 +1,10 @@
 pub mod mytest_string {
 
+    /// The pointer to the heap region you reserved.
+    /// The length of the string, i.e. how many bytes are in the string.
+    /// The capacity of the string, i.e. how many bytes have been reserved on the heap.
+
+
     /// String 转换成 &str 的几种方式
     /// 注意切片的方式在 UTF8 存在风险，因为必须落在字符的边界，比如说中文，所以不建议对字符串切片
     /// 同时，Rust String 也不允许进行索引操作
@@ -56,5 +61,15 @@ pub mod mytest_string {
         println!("{}", str_append);
         let result = format!("{} format {}", str_append, "!!!");
         println!("{}", result);
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use std::mem::size_of;
+
+        #[test]
+        fn string_size() {
+            assert_eq!(size_of::<String>(), 24);
+        }
     }
 }
