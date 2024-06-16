@@ -7,6 +7,33 @@ pub mod mytest_tarit {
         y: i32
     }
 
+    pub trait OrderPrint {
+        fn order_print(&self) -> &Self;
+    }
+
+    impl OrderPrint for Order {
+        fn order_print(&self) -> &Self {
+            println!("x: {}, y: {}", self.x, self.y);
+            &self
+        }
+    }
+
+    pub trait IsEven {
+        fn is_even(&self) -> bool;
+    }
+
+    impl IsEven for Order {
+        fn is_even(&self) -> bool {
+            self.x % 2 == 0
+        }
+    }
+
+    pub fn print_if_even<T: IsEven + std::fmt::Debug>(n: T) {
+        if n.is_even() {
+            println!("{n:?} is even")
+        }
+    }
+
     impl Add for Order {
         type Output = Self;
         fn add(self, rhs: Self) -> Self {
@@ -65,7 +92,8 @@ pub mod mytest_tarit {
 
     #[cfg(test)]
     mod test {
-        use super::Order;
+
+        use super::{Order, print_if_even, OrderPrint};
 
         #[test]
         fn test_add() {
@@ -92,6 +120,9 @@ pub mod mytest_tarit {
             assert_eq!(true, order2 > order1);
             assert_eq!(true, order2 >= order1);
             assert_eq!(true, order2 >= order3);
+            order1.order_print().order_print();
+            print_if_even(order1);
+            print_if_even(order2);
         }
     }
 }
